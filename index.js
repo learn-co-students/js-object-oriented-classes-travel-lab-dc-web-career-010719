@@ -12,8 +12,13 @@ class Driver{
     return year - startYear
   }
 }
-  
-  let eastWest = [
+ 
+
+//////////Route Class/////////////
+
+function horiz() {
+  //set horizontal streets to a function in lieu of global array
+  return [
     '1st Avenue',
     '2nd Avenue',
     '3rd Avenue',
@@ -21,7 +26,8 @@ class Driver{
     'Park',
     'Madison Avenue',
     '5th Avenue'
-  ]
+  ] 
+}
 
 class Route{
   //set initializers
@@ -30,12 +36,15 @@ class Route{
     this.endingLocation = endingLocation
   }
   
+  //class methods
   blocksTravelled(){
+    //set vertical street distance
     let street = Math.abs(this.beginningLocation.vertical - this.endingLocation.vertical)
     
+    //set horizontal street distance
     let streets = []
-    for (const st in eastWest) {
-	   if (eastWest[st] === this.beginningLocation.horizontal || eastWest[st] === this.endingLocation.horizontal) {
+    for (const st in horiz()) {
+	   if (horiz()[st] === this.beginningLocation.horizontal || horiz()[st] === this.endingLocation.horizontal) {
 		streets.push(st)
       }
     }
@@ -56,8 +65,5 @@ class Route{
         let offPeak = (this.blocksTravelled()/3) 
         return Math.round(offPeak)
       }
-      
-    
-    //peakHours
   }
 }
